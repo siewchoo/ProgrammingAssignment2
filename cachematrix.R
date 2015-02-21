@@ -1,5 +1,5 @@
-## 
 ## Constructs and provide getter and setter methods for a matrix. 
+## functions do.
 ##
 makeCacheMatrix <- function(x = matrix()) {
         i <- NULL		## Inverse matrix
@@ -68,7 +68,7 @@ cacheSolve <- function(x, ...) {
 	i <- solve(x$get())
 
 	## Then cache the inverse matrix output from the previous step.
-        x$setinverse(i)
+        x$setInverse(i)
 
 	## Then tag the current input matrix as the previous matrix 
 	## in preparation for tracking in the next run.
