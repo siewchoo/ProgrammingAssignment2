@@ -2,24 +2,23 @@
 Submission File: cachematrix.R
 
 Provides 2 functions within: 
-1 makeCacheMatrix
+1. makeCacheMatrix
    - makeCacheMatrix creates a special "matrix" with a list of getter and setter functions.
-2 cacheSolve
+2. cacheSolve
    - Checks whether the input matrix has been changed.
      * Yes - computes the inverse matrix
      * No - implies that the inverse had already been calculated and the cached copy should be used.
 
 
-### TEST SUITE FOR ACTUAL PROGRAM
+### Test Suite
 I have provided 2 test sets for the test suite.
-
-TEST SET 2 is simpler - testing only for fetching the inverse matrix from cache for 
-repeated access.
-TEST SET 1 is is more complete - testing for both fetching from cache for repeated 
-access, as well as testing for when the original input matrix is changed.
+- Test Set 2
+  * simpler; testing only for fetching the inverse matrix from cache for repeated access.
+- Test Set 1 
+  * more complete; testing for both fetching from cache for repeated access, as well as testing for when the original input matrix is changed.
 
 <!-- -->
-##TEST SET 1
+##Test Set 1
 > source("cachematrix.R")
 > m1 <- matrix(1:4, 2, 2)
 > m2 <- matrix(1:4, 2, 2)
@@ -58,7 +57,7 @@ access, as well as testing for when the original input matrix is changed.
 [1,] -2.5    2
 [2,]  1.5   -1
 
-## Should fetch inverse matrix from cache since 2nd time accessing
+Should fetch inverse matrix from cache since 2nd time accessing
 > cacheSolve(x)
 getting cached data
      [,1] [,2]
@@ -71,7 +70,7 @@ getting cached data
 [1,]   -2  1.5
 [2,]    1 -0.5
 
-## Should fetch inverse matrix from cache since the input matrix has not changed.
+Should fetch inverse matrix from cache since the input matrix has not changed.
 > x$set(m2)
 > cacheSolve(x)
 getting cached data
@@ -80,7 +79,7 @@ getting cached data
 [2,]    1 -0.5
 
 
-## TEST SET 2
+## Test Set 2
 > x = rbind(c(1, -1/4), c(-1/4, 1))
 > m <- makeCacheMatrix(x)
 > m$get()
@@ -93,7 +92,7 @@ getting cached data
 [1,] 1.0666667 0.2666667
 [2,] 0.2666667 1.0666667
 
-## Should fetch inverse matrix from cache since 2nd time accessing
+Should fetch inverse matrix from cache since 2nd time accessing
 > cacheSolve(m)
 getting cached data
           [,1]      [,2]
