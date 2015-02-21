@@ -4,7 +4,7 @@ Submission File: cachematrix.R
 Provides 2 functions within: 
 1.  makeCacheMatrix
    - makeCacheMatrix creates a special "matrix" with a list of getter and setter functions.
-1.  cacheSolve
+2.  cacheSolve
    - Checks whether the input matrix has been changed.
      * Yes - computes the inverse matrix
      * No - implies that the inverse had already been calculated and the cached copy should be used.
@@ -19,7 +19,6 @@ I have provided 2 test sets for the test suite.
 
 Test Set 1
 <!-- -->
-	> source("cachematrix.R")
 	> m1 <- matrix(1:4, 2, 2)
 	> m2 <- matrix(1:4, 2, 2)
 	> m3 <- matrix(2:5, 2, 2)
@@ -30,7 +29,7 @@ Test Set 1
 	[2,]    2    4
 
 	> m2
-     [,1] [,2]
+	     [,1] [,2]
 	[1,]    1    3
 	[2,]    2    4
 
@@ -57,7 +56,7 @@ Test Set 1
 	[1,] -2.5    2
 	[2,]  1.5   -1
 
-	Should fetch inverse matrix from cache since 2nd time accessing
+	## Should fetch inverse matrix from cache since 2nd time accessing
 	> cacheSolve(x)
 	getting cached data
 	     [,1] [,2]
@@ -70,7 +69,7 @@ Test Set 1
 	[1,]   -2  1.5
 	[2,]    1 -0.5
 
-	Should fetch inverse matrix from cache since the input matrix has not changed.
+	## Should fetch inverse matrix from cache since the input matrix has not changed.
 	> x$set(m2)
 	> cacheSolve(x)
 	getting cached data
@@ -80,24 +79,25 @@ Test Set 1
 
 
 Test Set 2
-> x = rbind(c(1, -1/4), c(-1/4, 1))
-> m <- makeCacheMatrix(x)
-> m$get()
-      [,1]  [,2]
-[1,]  1.00 -0.25
-[2,] -0.25  1.00
+<!-- -->
+	> x = rbind(c(1, -1/4), c(-1/4, 1))
+	> m <- makeCacheMatrix(x)
+	> m$get()
+	      [,1]  [,2]
+	[1,]  1.00 -0.25
+	[2,] -0.25  1.00
 
-> cacheSolve(m)
-          [,1]      [,2]
-[1,] 1.0666667 0.2666667
-[2,] 0.2666667 1.0666667
+	> cacheSolve(m)
+	          [,1]      [,2]
+	[1,] 1.0666667 0.2666667
+	[2,] 0.2666667 1.0666667
 
-Should fetch inverse matrix from cache since 2nd time accessing
-> cacheSolve(m)
-getting cached data
-          [,1]      [,2]
-[1,] 1.0666667 0.2666667
-[2,] 0.2666667 1.0666667
+	## Should fetch inverse matrix from cache since 2nd time accessing
+	> cacheSolve(m)
+	getting cached data
+	          [,1]      [,2]
+	[1,] 1.0666667 0.2666667
+	[2,] 0.2666667 1.0666667
 
 
 ### Introduction
