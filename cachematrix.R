@@ -1,6 +1,5 @@
 ## Constructs and provide getter and setter methods for a matrix. 
 ## functions do.
-##
 makeCacheMatrix <- function(x = matrix()) {
         i <- NULL		## Inverse matrix
 	prevMatrix <- NULL	## Used to track if the matrix has changed
