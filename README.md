@@ -2,9 +2,9 @@
 Submission File: cachematrix.R
 
 Provides 2 functions within: 
-1. makeCacheMatrix
+1.  makeCacheMatrix
    - makeCacheMatrix creates a special "matrix" with a list of getter and setter functions.
-2. cacheSolve
+1.  cacheSolve
    - Checks whether the input matrix has been changed.
      * Yes - computes the inverse matrix
      * No - implies that the inverse had already been calculated and the cached copy should be used.
@@ -18,7 +18,7 @@ I have provided 2 test sets for the test suite.
   * more complete; testing for both fetching from cache for repeated access, as well as testing for when the original input matrix is changed.
 
 <!-- -->
-##Test Set 1
+Test Set 1
 > source("cachematrix.R")
 > m1 <- matrix(1:4, 2, 2)
 > m2 <- matrix(1:4, 2, 2)
@@ -79,7 +79,7 @@ getting cached data
 [2,]    1 -0.5
 
 
-## Test Set 2
+Test Set 2
 > x = rbind(c(1, -1/4), c(-1/4, 1))
 > m <- makeCacheMatrix(x)
 > m$get()
