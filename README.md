@@ -2,8 +2,10 @@
 Submission File: cachematrix.R
 
 Provides 2 functions within: 
+
 1.  makeCacheMatrix
    - makeCacheMatrix creates a special "matrix" with a list of getter and setter functions.
+
 2.  cacheSolve
    - Checks whether the input matrix has been changed.
      * Yes - computes the inverse matrix
