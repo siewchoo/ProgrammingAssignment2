@@ -17,66 +17,66 @@ I have provided 2 test sets for the test suite.
 - Test Set 1 
   * more complete; testing for both fetching from cache for repeated access, as well as testing for when the original input matrix is changed.
 
-<!-- -->
 Test Set 1
-> source("cachematrix.R")
-> m1 <- matrix(1:4, 2, 2)
-> m2 <- matrix(1:4, 2, 2)
-> m3 <- matrix(2:5, 2, 2)
+<!-- -->
+	> source("cachematrix.R")
+	> m1 <- matrix(1:4, 2, 2)
+	> m2 <- matrix(1:4, 2, 2)
+	> m3 <- matrix(2:5, 2, 2)
 
-> m1
+	> m1
+	     [,1] [,2]
+	[1,]    1    3
+	[2,]    2    4
+
+	> m2
      [,1] [,2]
-[1,]    1    3
-[2,]    2    4
+	[1,]    1    3
+	[2,]    2    4
 
-> m2
-     [,1] [,2]
-[1,]    1    3
-[2,]    2    4
+	> m3
+	     [,1] [,2]
+	[1,]    2    4
+	[2,]    3    5
 
-> m3
-     [,1] [,2]
-[1,]    2    4
-[2,]    3    5
+	> x <- makeCacheMatrix(m1)
+	> cacheSolve(x)
+	    [,1] [,2]
+	[1,]   -2  1.5
+	[2,]    1 -0.5
 
-> x <- makeCacheMatrix(m1)
-> cacheSolve(x)
-    [,1] [,2]
-[1,]   -2  1.5
-[2,]    1 -0.5
+	> x <- makeCacheMatrix(m2)
+	> cacheSolve(x)
+	     [,1] [,2]
+	[1,]   -2  1.5
+	[2,]    1 -0.5
 
-> x <- makeCacheMatrix(m2)
-> cacheSolve(x)
-     [,1] [,2]
-[1,]   -2  1.5
-[2,]    1 -0.5
+	> x <- makeCacheMatrix(m3)
+	> cacheSolve(x)
+	     [,1] [,2]
+	[1,] -2.5    2
+	[2,]  1.5   -1
 
-> x <- makeCacheMatrix(m3)
-> cacheSolve(x)
-     [,1] [,2]
-[1,] -2.5    2
-[2,]  1.5   -1
+	Should fetch inverse matrix from cache since 2nd time accessing
+	> cacheSolve(x)
+	getting cached data
+	     [,1] [,2]
+	[1,] -2.5    2
+	[2,]  1.5   -1
 
-Should fetch inverse matrix from cache since 2nd time accessing
-> cacheSolve(x)
-getting cached data
-     [,1] [,2]
-[1,] -2.5    2
-[2,]  1.5   -1
+	> x <- makeCacheMatrix(m2)
+	> cacheSolve(x)
+	    [,1] [,2]
+	[1,]   -2  1.5
+	[2,]    1 -0.5
 
-> x <- makeCacheMatrix(m2)
-> cacheSolve(x)
-    [,1] [,2]
-[1,]   -2  1.5
-[2,]    1 -0.5
-
-Should fetch inverse matrix from cache since the input matrix has not changed.
-> x$set(m2)
-> cacheSolve(x)
-getting cached data
-     [,1] [,2]
-[1,]   -2  1.5
-[2,]    1 -0.5
+	Should fetch inverse matrix from cache since the input matrix has not changed.
+	> x$set(m2)
+	> cacheSolve(x)
+	getting cached data
+	     [,1] [,2]
+	[1,]   -2  1.5
+	[2,]    1 -0.5
 
 
 Test Set 2
